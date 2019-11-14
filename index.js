@@ -39,7 +39,6 @@ class Airplane {
     - Give instances of Person a method `.toString()`:
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
-
 class Person {
   constructor (name, age) {
     this.name = name;
@@ -60,7 +59,6 @@ class Person {
   toString() {
     return `${this.name} ${this.age}`
   }
-
 }
 
 /*
@@ -76,9 +74,26 @@ class Person {
     - A car which runs out of `fuel` while driving can't drive any more distance:
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
-
 class Car {
+  constructor (model, milesPerGallon) {
+    this.milesPerGallon = milesPerGallon;
+    this.model = model;
+    this.tank = 0;
+    this.odometer = 0;
+  }
+  
+  fill (gallons) {this.tank = this.tank + gallons;}
 
+  drive (distance){
+    if (this.tank > distance/this.milesPerGallon) {
+    this.odometer = distance;
+    this.tank = this.tank - (distance/this.milesPerGallon);
+    }
+    else { 
+      this.odometer = this.milesPerGallon * this.tank;
+      this.tank = 0;
+      return `I ran out of fuel at ${this.odometer} miles!`}
+  }
 }
 
 /*
